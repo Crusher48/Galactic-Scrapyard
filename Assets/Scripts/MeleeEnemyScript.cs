@@ -20,9 +20,7 @@ public class MeleeEnemyScript : MonoBehaviour
         //for each enemy in range, damage it
         foreach (var target in objectsInContact)
         {
-            print("Damaging Target!");
             target.GetComponent<Health>().ChangeHealth(-damagePerSecond * Time.deltaTime);
-            print(target.GetComponent<Health>().health);
         }
     }
     //if there is a target, move towards it

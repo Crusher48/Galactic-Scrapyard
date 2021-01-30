@@ -1399,5 +1399,15 @@ PrefabInstance:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 1159524248}
+    - target: {fileID: 5203446881457509111, guid: 2ff0c829041318b43b733af760a94b47,
+        type: 3}
+      propertyPath: gravityForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542286900864836408, guid: 2ff0c829041318b43b733af760a94b47,
+        type: 3}
+      propertyPath: orthographic size
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ff0c829041318b43b733af760a94b47, type: 3}

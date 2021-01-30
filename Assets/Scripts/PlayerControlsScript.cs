@@ -4,31 +4,39 @@ using UnityEngine;
 
 public class PlayerControlsScript : MonoBehaviour
 {
+    [SerializeField] LineRenderer gravityForceRenderer;
     [SerializeField] GameObject jointPrefab;
     [SerializeField] float gravityForce = 5;
 
     Vector2 mousePos;
     GameObject grabbedObject = null;
     GameObject activeJoint = null;
+    Vector2 dragPointOffset = Vector2.zero;
     //Called once per frame
     void Update()
     {
+        //get the mouse position
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         GameObject hoveredObject = null;
+        //get a hovered component or enemy
         LayerMask layers = LayerMask.GetMask("Component", "Enemy");
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f,layers);
+        RaycastHit2D hit = Physics2D.CircleCast(mousePos, 0.2f, Vector2.zero,0,layers);
         if (hit)
         {
             hoveredObject = hit.collider.gameObject;
         }
+        //select an object to grab
         if (Input.GetMouseButtonDown(0))
         {
             grabbedObject = hoveredObject;
+            dragPointOffset = grabbedObject.transform.InverseTransformPoint(hit.point);
         }
+        //unselect a grabbed object
         if (Input.GetMouseButtonUp(0))
         {
             grabbedObject = null;
         }
+        //attach one end of a joint to the hovered object
         if (Input.GetMouseButtonDown(1))
         {
             if (hoveredObject)
@@ -51,6 +59,7 @@ public class PlayerControlsScript : MonoBehaviour
                 activeJoint = null;
             }
         }
+        //complete a joint attach
         if (Input.GetMouseButtonUp(1))
         {
             if (activeJoint)
@@ -81,6 +90,19 @@ public class PlayerControlsScript : MonoBehaviour
                 }
             }
         }
+        //update line renderer
+        if (grabbedObject)
+        {
+            gravityForceRenderer.enabled = true;
+            List<Vector3> positions = new List<Vector3>();
+            positions.Add(grabbedObject.transform.TransformPoint(dragPointOffset));
+            positions.Add(mousePos);
+            gravityForceRenderer.SetPositions(positions.ToArray());
+        }
+        else
+        {
+            gravityForceRenderer.enabled = false;
+        }
     }
     //Called once every physics update
     void FixedUpdate()
@@ -90,7 +112,8 @@ public class PlayerControlsScript : MonoBehaviour
             Rigidbody2D grabbedBody = grabbedObject.GetComponent<Rigidbody2D>();
             Vector2 launchDirection = mousePos - (Vector2)grabbedObject.transform.position;
             launchDirection = launchDirection.normalized;
-            grabbedBody.AddForce(launchDirection * gravityForce,ForceMode2D.Force);
+            //grabbedBody.AddForce(launchDirection * gravityForce,ForceMode2D.Force);
+            grabbedBody.AddForceAtPosition(launchDirection * gravityForce, grabbedBody.transform.TransformPoint(dragPointOffset), ForceMode2D.Force);
         }
     }
     //Creates a joint
