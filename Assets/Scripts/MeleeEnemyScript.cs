@@ -15,6 +15,9 @@ public class MeleeEnemyScript : MonoBehaviour
     }
     private void Update()
     {
+        //attempt to get the target
+        targetObject = sensor.GetClosestObjectInRange();
+        //for each enemy in range, damage it
         foreach (var target in objectsInContact)
         {
             print("Damaging Target!");
@@ -22,18 +25,20 @@ public class MeleeEnemyScript : MonoBehaviour
             print(target.GetComponent<Health>().health);
         }
     }
+    //if there is a target, move towards it
     private void FixedUpdate()
     {
-        targetObject = sensor.GetClosestObjectInRange();
         if (targetObject == null) return;
         Vector2 targetDirection = (targetObject.transform.position - transform.position).normalized;
         GetComponent<Rigidbody2D>().AddForce(targetDirection * speed);
     }
+    //add objects to the list of objects that take damage
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Health>())
         objectsInContact.Add(collision.gameObject);
     }
+    //remove objects from the list of objects that take damage
     private void OnCollisionExit2D(Collision2D collision)
     {
         objectsInContact.Remove(collision.gameObject);

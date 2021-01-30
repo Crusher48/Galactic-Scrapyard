@@ -13,7 +13,7 @@ public class CannonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cannonTimer <= 0)
+        if (cannonTimer <= 0) //attempt to fire the cannon
         {
             GameObject target = sensor.GetClosestObjectInRange();
             if (target)
@@ -24,7 +24,7 @@ public class CannonScript : MonoBehaviour
                 cannonTimer += cannonCooldown;
             }
         }
-        else
+        else //decrement the cannon timer
         {
             cannonTimer -= Time.deltaTime;
         }

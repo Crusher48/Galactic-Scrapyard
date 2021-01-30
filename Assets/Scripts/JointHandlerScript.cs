@@ -12,6 +12,7 @@ public class JointHandlerScript : MonoBehaviour
         springJoint = GetComponent<SpringJoint2D>();
         jointRenderer = GetComponent<LineRenderer>();
     }
+    //attach the fixed joint to the object this joint is on
     public void AttachToParent()
     {
         FixedJoint2D fixedJoint = GetComponent<FixedJoint2D>();
@@ -26,7 +27,7 @@ public class JointHandlerScript : MonoBehaviour
         other.otherHandler = this;
     }
     //detaches this joint
-    public void DetatchJoint()
+    public void DetachJoint()
     {
         if (otherHandler != null)
         {
@@ -35,14 +36,15 @@ public class JointHandlerScript : MonoBehaviour
             Destroy(otherHandler.gameObject);
         }
     }
+    //detach on destruction
     private void OnDestroy()
     {
-        DetatchJoint();
+        DetachJoint();
     }
     //do the line renderer
     private void Update()
     {
-        if (springJoint.enabled)
+        if (springJoint.enabled) //line from this joint to the other joint
         {
             jointRenderer.enabled = true;
             List<Vector3> positions = new List<Vector3>();
@@ -50,7 +52,7 @@ public class JointHandlerScript : MonoBehaviour
             positions.Add(springJoint.connectedBody.transform.position);
             jointRenderer.SetPositions(positions.ToArray());
         }
-        else
+        else //disable line renderer
         {
             jointRenderer.enabled = false;
         }

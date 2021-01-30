@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+///Range detector sensor, attach this to a submodule for a cheap way to get targets
 public class RangeDetectorScript : MonoBehaviour
 {
     List<GameObject> objectsInRange;
@@ -38,10 +39,12 @@ public class RangeDetectorScript : MonoBehaviour
     {
         return new List<GameObject>(objectsInRange);
     }
+    //when an object enters the trigger, add it to the list
     private void OnTriggerEnter2D(Collider2D collision)
     {
         objectsInRange.Add(collision.gameObject);
     }
+    //when an object leaves the trigger, remove it from the list
     private void OnTriggerExit2D(Collider2D collision)
     {
         objectsInRange.Remove(collision.gameObject);

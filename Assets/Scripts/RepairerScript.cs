@@ -6,15 +6,11 @@ public class RepairerScript : MonoBehaviour
 {
     [SerializeField] RangeDetectorScript sensor;
     [SerializeField] float repairRate = 5;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //Repair all components in range
         foreach(var obj in sensor.GetAllObjectsInRange())
         {
             obj.GetComponent<Health>().ChangeHealth(repairRate * Time.deltaTime);

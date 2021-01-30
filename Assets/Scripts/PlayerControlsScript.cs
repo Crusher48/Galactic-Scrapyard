@@ -10,11 +10,7 @@ public class PlayerControlsScript : MonoBehaviour
     Vector2 mousePos;
     GameObject grabbedObject = null;
     GameObject activeJoint = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Called once per frame
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
@@ -27,12 +23,10 @@ public class PlayerControlsScript : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            print("Selecting Object!");
             grabbedObject = hoveredObject;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            print("Deselecting Object!");
             grabbedObject = null;
         }
         if (Input.GetMouseButtonDown(1))
@@ -43,13 +37,11 @@ public class PlayerControlsScript : MonoBehaviour
                 RaycastHit2D jointCast = Physics2D.Raycast(mousePos, Vector2.zero, 0, layers);
                 if (jointCast)
                 {
-                    print("Existing Joint Hit!");
                     activeJoint = jointCast.collider.gameObject;
-                    activeJoint.GetComponent<JointHandlerScript>().DetatchJoint();
+                    activeJoint.GetComponent<JointHandlerScript>().DetachJoint();
                 }
                 else
                 {
-                    print("Placing Joint");
                     GameObject newJoint = CreateJoint(hoveredObject, mousePos);
                     activeJoint = newJoint;
                 }
@@ -65,35 +57,35 @@ public class PlayerControlsScript : MonoBehaviour
             {
                 if (hoveredObject != null && hoveredObject != activeJoint.transform.parent.gameObject)
                 {
-
+                    //attempt to hit an existing joint
                     layers = LayerMask.GetMask("Intangibles");
                     RaycastHit2D jointCast = Physics2D.Raycast(mousePos, Vector2.zero, 0, layers);
                     if (jointCast)
                     {
-                        print("Attaching to existing joint");
-                        jointCast.collider.GetComponent<JointHandlerScript>().DetatchJoint();
+                        //attach to an existing joint
+                        jointCast.collider.GetComponent<JointHandlerScript>().DetachJoint();
                         jointCast.collider.GetComponent<JointHandlerScript>().AttachJoint(activeJoint.GetComponent<JointHandlerScript>());
                     }
                     else
                     {
-                        print("Attaching to new joint");
+                        //create a new joint to attach to
                         GameObject secondJoint = CreateJoint(hoveredObject, mousePos);
                         activeJoint.GetComponent<JointHandlerScript>().AttachJoint(secondJoint.GetComponent<JointHandlerScript>());
                     }
                 }
                 else
                 {
-                    print("Joint Failed!");
+                    //joint connection failed, destroy joint
                     Destroy(activeJoint);
                     activeJoint = null;
                 }
             }
         }
     }
-    // Update is called once per frame
+    //Called once every physics update
     void FixedUpdate()
     {
-        if (grabbedObject)
+        if (grabbedObject) //if we have a grabbed object, pull it towards the mouse cursor
         {
             Rigidbody2D grabbedBody = grabbedObject.GetComponent<Rigidbody2D>();
             Vector2 launchDirection = mousePos - (Vector2)grabbedObject.transform.position;
@@ -101,6 +93,7 @@ public class PlayerControlsScript : MonoBehaviour
             grabbedBody.AddForce(launchDirection * gravityForce,ForceMode2D.Force);
         }
     }
+    //Creates a joint
     GameObject CreateJoint(GameObject target, Vector2 position)
     {
         GameObject newJoint = Instantiate(jointPrefab);
