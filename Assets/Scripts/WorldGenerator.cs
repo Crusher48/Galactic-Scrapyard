@@ -51,7 +51,10 @@ public class WorldGenerator : MonoBehaviour
                 wreckSpawnPoint = potentialSpawnPoint;
         }
         if (wreckSpawnPoint == Vector2.zero)
+        {
             print("Spawn Failed!");
+            return;
+        }
         //spawn the debris
         int spawnCount = Random.Range(minSpawnCount, maxSpawnCount);
         for (int x = 0; x < spawnCount; x++)
