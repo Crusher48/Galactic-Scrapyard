@@ -19,12 +19,13 @@ public class JointHandlerScript : MonoBehaviour
         fixedJoint.connectedBody = transform.parent.GetComponent<Rigidbody2D>();
     }
     //attaches this joint to another joint object
-    public void AttachJoint(JointHandlerScript other)
+    public void AttachJoint(JointHandlerScript other,float maxJointLength = 100)
     {
         springJoint.connectedBody = other.GetComponent<Rigidbody2D>();
         springJoint.enabled = true;
         otherHandler = other;
         other.otherHandler = this;
+        springJoint.distance = 0;//Mathf.Min((other.transform.position-transform.position).magnitude, maxJointLength);
     }
     //detaches this joint
     public void DetachJoint()

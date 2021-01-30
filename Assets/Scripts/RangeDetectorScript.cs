@@ -7,7 +7,7 @@ public class RangeDetectorScript : MonoBehaviour
 {
     List<GameObject> objectsInRange;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         objectsInRange = new List<GameObject>();
     }

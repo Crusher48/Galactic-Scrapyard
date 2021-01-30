@@ -7,6 +7,7 @@ public class PlayerControlsScript : MonoBehaviour
     [SerializeField] LineRenderer gravityForceRenderer;
     [SerializeField] GameObject jointPrefab;
     [SerializeField] float gravityForce = 5;
+    [SerializeField] float maxJointLength = 5;
 
     Vector2 mousePos;
     GameObject grabbedObject = null;
@@ -15,6 +16,10 @@ public class PlayerControlsScript : MonoBehaviour
     //Called once per frame
     void Update()
     {
+        if (Input.GetButton("Jump"))
+            Camera.main.orthographicSize = 50;
+        else
+            Camera.main.orthographicSize = 8;
         //get the mouse position
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         GameObject hoveredObject = null;
@@ -73,13 +78,13 @@ public class PlayerControlsScript : MonoBehaviour
                     {
                         //attach to an existing joint
                         jointCast.collider.GetComponent<JointHandlerScript>().DetachJoint();
-                        jointCast.collider.GetComponent<JointHandlerScript>().AttachJoint(activeJoint.GetComponent<JointHandlerScript>());
+                        jointCast.collider.GetComponent<JointHandlerScript>().AttachJoint(activeJoint.GetComponent<JointHandlerScript>(),maxJointLength);
                     }
                     else
                     {
                         //create a new joint to attach to
                         GameObject secondJoint = CreateJoint(hoveredObject, mousePos);
-                        activeJoint.GetComponent<JointHandlerScript>().AttachJoint(secondJoint.GetComponent<JointHandlerScript>());
+                        activeJoint.GetComponent<JointHandlerScript>().AttachJoint(secondJoint.GetComponent<JointHandlerScript>(),maxJointLength);
                     }
                 }
                 else
@@ -110,8 +115,8 @@ public class PlayerControlsScript : MonoBehaviour
         if (grabbedObject) //if we have a grabbed object, pull it towards the mouse cursor
         {
             Rigidbody2D grabbedBody = grabbedObject.GetComponent<Rigidbody2D>();
-            Vector2 launchDirection = mousePos - (Vector2)grabbedObject.transform.position;
-            launchDirection = launchDirection.normalized;
+            Vector2 launchDirection = mousePos - ((Vector2)grabbedBody.transform.position+grabbedBody.velocity*0.25f); //adds a small amount of velocity negation to this
+            launchDirection = launchDirection.normalized;//launchDirection /= Mathf.Max(launchDirection.magnitude, 1);
             //grabbedBody.AddForce(launchDirection * gravityForce,ForceMode2D.Force);
             grabbedBody.AddForceAtPosition(launchDirection * gravityForce, grabbedBody.transform.TransformPoint(dragPointOffset), ForceMode2D.Force);
         }

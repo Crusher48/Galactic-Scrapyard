@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensor: {fileID: 3268582432791705878}
-  speed: 1
-  damagePerSecond: 25
+  speed: 2
+  damagePerSecond: 10
   targetObject: {fileID: 0}
 --- !u!1001 &986206556946731758
 PrefabInstance:
@@ -23,6 +23,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8477284759253542119}
     m_Modifications:
+    - target: {fileID: 814613390739015832, guid: c9818b989070e624fb5918d31d3b3f85,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_RootOrder

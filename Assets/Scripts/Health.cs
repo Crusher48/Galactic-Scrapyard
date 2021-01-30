@@ -7,9 +7,10 @@ public class Health : MonoBehaviour
     public float health = 100;
     public float maxHealth = 100;
     Color baseColor;
-    private void Start()
+    private void Awake()
     {
         baseColor = GetComponent<SpriteRenderer>().color;
+        health = maxHealth;
     }
     //adds or removes health from the thing
     public void ChangeHealth(float netChange)

@@ -20,7 +20,9 @@ public class CannonScript : MonoBehaviour
             {
                 GameObject spawnedProjectile = Instantiate(projectilePrefab);
                 spawnedProjectile.transform.position = transform.position;
-                spawnedProjectile.GetComponent<ProjectileScript>().InitializeProjectile(projectileDamage, (target.transform.position - transform.position).normalized*projectileVelocity);
+                //launch direction (with a bit of leading the target)
+                Vector2 launchDirection = ((Vector2)target.transform.position - ((Vector2)transform.position-target.GetComponent<Rigidbody2D>().velocity*0.25f)).normalized * projectileVelocity;
+                spawnedProjectile.GetComponent<ProjectileScript>().InitializeProjectile(projectileDamage, launchDirection);
                 cannonTimer += cannonCooldown;
             }
         }
