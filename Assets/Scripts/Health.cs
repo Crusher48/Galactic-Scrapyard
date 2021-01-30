@@ -13,8 +13,8 @@ public class Health : MonoBehaviour
     }
     public void ChangeHealth(float netChange)
     {
-        health += netChange;
-        if (health < 0)
+        health = Mathf.Clamp(health+netChange,0,maxHealth);
+        if (health <= 0)
             Destroy(gameObject);
         GetComponent<SpriteRenderer>().color = baseColor * (0.5f+0.5f*(health / maxHealth));
     }

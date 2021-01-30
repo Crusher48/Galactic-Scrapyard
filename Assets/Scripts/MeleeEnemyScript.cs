@@ -24,13 +24,14 @@ public class MeleeEnemyScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        targetObject = sensor.GetObjectInRange();
+        targetObject = sensor.GetClosestObjectInRange();
         if (targetObject == null) return;
         Vector2 targetDirection = (targetObject.transform.position - transform.position).normalized;
         GetComponent<Rigidbody2D>().AddForce(targetDirection * speed);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.GetComponent<Health>())
         objectsInContact.Add(collision.gameObject);
     }
     private void OnCollisionExit2D(Collision2D collision)
