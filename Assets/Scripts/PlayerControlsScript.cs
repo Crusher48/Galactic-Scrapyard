@@ -19,7 +19,7 @@ public class PlayerControlsScript : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         GameObject hoveredObject = null;
-        LayerMask layers = ~LayerMask.GetMask("Intangibles");
+        LayerMask layers = LayerMask.GetMask("Component", "Enemy");
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f,layers);
         if (hit)
         {
