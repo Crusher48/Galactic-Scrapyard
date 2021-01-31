@@ -44,7 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensor: {fileID: 3268582432791705878}
   speed: 2
-  damagePerSecond: 10
+  damagePerSecond: 20
   forceSource: {fileID: 4539158661721063869}
 --- !u!1001 &986206556946731758
 PrefabInstance:

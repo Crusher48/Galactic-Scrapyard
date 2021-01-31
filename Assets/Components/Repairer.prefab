@@ -27,6 +27,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToDisable: {fileID: 3624563748316877918}
+  timeUntilDepower: 0
 --- !u!1001 &4301185991240349541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,12 +176,12 @@ PrefabInstance:
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}

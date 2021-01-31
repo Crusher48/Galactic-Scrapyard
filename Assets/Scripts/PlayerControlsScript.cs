@@ -24,7 +24,7 @@ public class PlayerControlsScript : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         GameObject hoveredObject = null;
         //get a hovered component or enemy
-        LayerMask layers = LayerMask.GetMask("Component", "Enemy");
+        LayerMask layers = LayerMask.GetMask("Component", "Enemy", "Asteroids");
         RaycastHit2D hit = Physics2D.CircleCast(mousePos, 0.2f, Vector2.zero,0,layers);
         if (hit)
         {

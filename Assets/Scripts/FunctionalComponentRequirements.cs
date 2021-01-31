@@ -6,7 +6,7 @@ public class FunctionalComponentRequirements : MonoBehaviour
 {
     [SerializeField] GameObject targetToDisable;
     Health healthComponent;
-    float timeSinceLastPower = 0;
+    public float timeUntilDepower = 0;
     private void Awake()
     {
         healthComponent = GetComponent<Health>();
@@ -15,16 +15,14 @@ public class FunctionalComponentRequirements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healthComponent.IsDamaged()) //if the component is damaged, deactivate it
-            targetToDisable.SetActive(false);
-        else //check to see if there is a powersource
-        {
-            int layers = LayerMask.GetMask("PowerZone");
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0, layers);
-            if (hit)
-                targetToDisable.SetActive(true);
-            else
-                targetToDisable.SetActive(false);
-        }
+        //check to see if there is a powersource
+        int layers = LayerMask.GetMask("PowerZone");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0, layers);
+        if (hit)
+            timeUntilDepower = 5;
+        else
+            timeUntilDepower = Mathf.Max(0, timeUntilDepower - Time.deltaTime);
+        //final decision, deactivate if damaged or unpowered
+        targetToDisable.SetActive(GetComponent<Health>().IsDamaged() == false && timeUntilDepower > 0);
     }
 }

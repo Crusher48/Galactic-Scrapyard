@@ -11,9 +11,21 @@ public class RepairerScript : MonoBehaviour
     void Update()
     {
         //Repair all components in range
-        foreach(var obj in sensor.GetAllObjectsInRange())
+        List<GameObject> repairTargets = sensor.GetAllObjectsInRange();
+        //if powered, add ourself as a component
+        if (GetComponent<FunctionalComponentRequirements>().timeUntilDepower > 0)
+            repairTargets.Add(this.gameObject);
+        //remove targets that are at full health
+        for (int x = repairTargets.Count-1; x >= 0; x--) 
         {
-            obj.GetComponent<Health>().ChangeHealth(repairRate * Time.deltaTime);
+            Health healthComponent = repairTargets[x].GetComponent<Health>();
+            if (healthComponent.health == healthComponent.maxHealth)
+                repairTargets.RemoveAt(x);
+        }
+        //split repair among remaining targets
+        foreach (var obj in repairTargets)
+        {
+            obj.GetComponent<Health>().ChangeHealth((repairRate / repairTargets.Count) * Time.deltaTime);
         }
     }
 }
