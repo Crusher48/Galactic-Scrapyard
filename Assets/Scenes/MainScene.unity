@@ -160,7 +160,7 @@ MonoBehaviour:
   minSpawnCount: 1
   maxSpawnCount: 5
   startingSpawns: 0
-  spawnCooldown: 10
+  spawnCooldown: 20
   spawnables:
   - spawnedObject: {fileID: 2637417465407765697, guid: f3521b4c811e50548881f9a4fcd471fb,
       type: 3}

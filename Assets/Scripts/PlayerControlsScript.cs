@@ -14,6 +14,7 @@ public class PlayerControlsScript : MonoBehaviour
     GameObject grabbedObject = null;
     GameObject activeJoint = null;
     Vector2 dragPointOffset = Vector2.zero;
+    Vector2 hoveredHitPoint;
     //Called once per frame
     void Update()
     {
@@ -30,12 +31,13 @@ public class PlayerControlsScript : MonoBehaviour
         if (hit)
         {
             hoveredObject = hit.collider.gameObject;
+            hoveredHitPoint = hit.point;
         }
         //select an object to grab
         if (Input.GetMouseButtonDown(0))
         {
             grabbedObject = hoveredObject;
-            dragPointOffset = grabbedObject.transform.InverseTransformPoint(hit.point);
+            dragPointOffset = grabbedObject.transform.InverseTransformPoint(hoveredHitPoint);
         }
         //unselect a grabbed object
         if (Input.GetMouseButtonUp(0))
@@ -45,20 +47,15 @@ public class PlayerControlsScript : MonoBehaviour
         //attach one end of a joint to the hovered object
         if (Input.GetMouseButtonDown(1))
         {
-            if (hoveredObject)
+            if (grabbedObject) //if grabbing an object, attach the joint at the grab point
             {
-                layers = LayerMask.GetMask("Intangibles");
-                RaycastHit2D jointCast = Physics2D.Raycast(mousePos, Vector2.zero, 0, layers);
-                if (jointCast)
-                {
-                    activeJoint = jointCast.collider.gameObject;
-                    activeJoint.GetComponent<JointHandlerScript>().DetachJoint();
-                }
-                else
-                {
-                    GameObject newJoint = CreateJoint(hoveredObject, mousePos);
-                    activeJoint = newJoint;
-                }
+                GameObject newJoint = CreateJoint(grabbedObject, grabbedObject.transform.TransformPoint(dragPointOffset));
+                activeJoint = newJoint;
+            }
+            else if (hoveredObject)
+            {
+                GameObject newJoint = CreateJoint(hoveredObject, hoveredHitPoint);
+                activeJoint = newJoint;
             }
             else
             {
@@ -72,21 +69,9 @@ public class PlayerControlsScript : MonoBehaviour
             {
                 if (hoveredObject != null && hoveredObject != activeJoint.transform.parent.gameObject)
                 {
-                    //attempt to hit an existing joint
-                    layers = LayerMask.GetMask("Intangibles");
-                    RaycastHit2D jointCast = Physics2D.Raycast(mousePos, Vector2.zero, 0, layers);
-                    if (jointCast)
-                    {
-                        //attach to an existing joint
-                        jointCast.collider.GetComponent<JointHandlerScript>().DetachJoint();
-                        jointCast.collider.GetComponent<JointHandlerScript>().AttachJoint(activeJoint.GetComponent<JointHandlerScript>(),maxJointLength);
-                    }
-                    else
-                    {
-                        //create a new joint to attach to
-                        GameObject secondJoint = CreateJoint(hoveredObject, mousePos);
-                        activeJoint.GetComponent<JointHandlerScript>().AttachJoint(secondJoint.GetComponent<JointHandlerScript>(),maxJointLength);
-                    }
+                    //create a new joint to attach to
+                    GameObject secondJoint = CreateJoint(hoveredObject, hoveredHitPoint);
+                    activeJoint.GetComponent<JointHandlerScript>().AttachJoint(secondJoint.GetComponent<JointHandlerScript>(),maxJointLength);
                 }
                 else
                 {
@@ -95,6 +80,14 @@ public class PlayerControlsScript : MonoBehaviour
                     activeJoint = null;
                 }
             }
+        }
+        //Detach joints
+        if (Input.GetMouseButton(2))
+        {
+            layers = LayerMask.GetMask("Intangibles");
+            RaycastHit2D jointCast = Physics2D.Raycast(mousePos, Vector2.zero, 0, layers);
+            if (jointCast)
+                Destroy(jointCast.collider.gameObject);
         }
         //update line renderer
         if (grabbedObject)

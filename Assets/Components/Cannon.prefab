@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToDisable: {fileID: 7026452615965611121}
+  timeUntilDepower: 0
 --- !u!114 &8211267497691327373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 151992032129571862, guid: f61fcc5a63389704eaac44b968851c64,
     type: 3}
   projectileVelocity: 1
-  projectileDamage: 10
+  projectileDamage: 20
   cannonCooldown: 1
 --- !u!1 &4402404794624735001
 GameObject:
