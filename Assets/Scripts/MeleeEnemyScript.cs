@@ -32,7 +32,6 @@ public class MeleeEnemyScript : MonoBehaviour
     {
         if (targetObject == null) return;
         Vector2 targetDirection = ((Vector2)targetObject.transform.position - ((Vector2)transform.position+GetComponent<Rigidbody2D>().velocity*0.25f)).normalized;
-        GetComponent<Rigidbody2D>().AddForce(targetDirection * speed);
         GetComponent<Rigidbody2D>().AddForceAtPosition(targetDirection * speed, forceSource.transform.position);
         //pull grabbed objects towards the attacker
         foreach (var obj in objectsInContact)
@@ -45,7 +44,7 @@ public class MeleeEnemyScript : MonoBehaviour
     //add objects to the list of objects that take damage
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Health>())
+        if (collision.gameObject.GetComponent<Health>() && collision.collider.gameObject.layer != LayerMask.NameToLayer("Enemy"))
         objectsInContact.Add(collision.gameObject);
     }
     //remove objects from the list of objects that take damage
