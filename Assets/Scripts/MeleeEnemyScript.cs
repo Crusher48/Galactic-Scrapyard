@@ -8,6 +8,8 @@ public class MeleeEnemyScript : MonoBehaviour
     [SerializeField] float speed = 1;
     [SerializeField] float damagePerSecond = 10;
     [SerializeField] GameObject forceSource;
+    [SerializeField] AudioClip growlSound;
+    float growlCooldown = 0;
     GameObject targetObject = null;
     List<GameObject> objectsInContact;
     private void Start()
@@ -25,6 +27,18 @@ public class MeleeEnemyScript : MonoBehaviour
         {
             GameObject target = objectsInContact[x];
             target.GetComponent<Health>().ChangeHealth(-damagePerSecond * Time.deltaTime);
+        }
+        if (objectsInContact.Count > 0) //growl
+        {
+            if (growlCooldown <= 0)
+            {
+                growlCooldown += 5;
+                AudioObject.CreateAudioObject(growlSound, transform.position);
+            }
+            else
+            {
+                growlCooldown -= Time.deltaTime;
+            }
         }
     }
     //if there is a target, move towards it

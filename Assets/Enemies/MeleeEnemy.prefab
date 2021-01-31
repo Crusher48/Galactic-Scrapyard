@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5713275646744366378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2637417465407765697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb95dfa84aa2c140ade07952f3abdcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensor: {fileID: 3268582432791705878}
-  speed: 2
-  damagePerSecond: 20
-  forceSource: {fileID: 4539158661721063869}
 --- !u!1 &4539158661721063869
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +30,23 @@ Transform:
   m_Father: {fileID: 8477284759253542119}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5713275646744366378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637417465407765697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb95dfa84aa2c140ade07952f3abdcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 3268582432791705878}
+  speed: 2
+  damagePerSecond: 20
+  forceSource: {fileID: 4539158661721063869}
+  growlSound: {fileID: 8300000, guid: 57ae1693973e810458214ad03d72b65e, type: 3}
 --- !u!1001 &986206556946731758
 PrefabInstance:
   m_ObjectHideFlags: 0
