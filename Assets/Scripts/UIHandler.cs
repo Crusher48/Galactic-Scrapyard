@@ -30,7 +30,7 @@ public class UIHandler : MonoBehaviour
         objectHealthText.enabled = true;
         objectNameText.text = targetObject.objectname;
         objectDescriptionText.text = targetObject.description;
-        objectHealthText.text = "Health: " + targetObject.health + "/" + targetObject.maxHealth;
+        objectHealthText.text = "Health: " + (int)targetObject.health + "/" + (int)targetObject.maxHealth;
     }
     public void OpenPauseMenu(string text = "Game Paused")
     {
