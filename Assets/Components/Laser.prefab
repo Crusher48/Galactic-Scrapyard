@@ -29,7 +29,7 @@ MonoBehaviour:
   sensor: {fileID: 1700216364513055327}
   projectilePrefab: {fileID: 151992032129571862, guid: 3289fbb969435cc43b928c6a1d7f9351,
     type: 3}
-  projectileVelocity: 0.001
+  projectileVelocity: 0.1
   projectileDamage: 4
   cannonCooldown: 0.1
   turret: {fileID: 4402404794624735001}

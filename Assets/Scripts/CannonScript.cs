@@ -39,6 +39,7 @@ public class CannonScript : MonoBehaviour
     //sets the rotation of the node
     public void LookCannonAt(Vector2 target)
     {
+        if (turret == null) return;
         Vector2 direction = target - (Vector2)transform.position;
         Vector3 eulers = turret.transform.eulerAngles;
         eulers.z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg+90;

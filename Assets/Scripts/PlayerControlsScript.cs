@@ -35,7 +35,6 @@ public class PlayerControlsScript : MonoBehaviour
         }
         else
         {
-            print(Input.mouseScrollDelta);
             cameraSize += -Input.mouseScrollDelta.y;
             cameraSize = Mathf.Clamp(cameraSize, 5, 20);
             Camera.main.orthographicSize = cameraSize;
