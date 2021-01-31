@@ -7,7 +7,8 @@ public class MeleeEnemyScript : MonoBehaviour
     [SerializeField] RangeDetectorScript sensor;
     [SerializeField] float speed = 1;
     [SerializeField] float damagePerSecond = 10;
-    [SerializeField] GameObject targetObject = null;
+    [SerializeField] GameObject forceSource;
+    GameObject targetObject = null;
     List<GameObject> objectsInContact;
     private void Start()
     {
@@ -17,6 +18,8 @@ public class MeleeEnemyScript : MonoBehaviour
     {
         //attempt to get the target
         targetObject = sensor.GetClosestObjectInRange();
+        if (targetObject == null)
+            targetObject = GameObject.Find("PlayerShip");
         //for each enemy in range, damage it
         for (int x = objectsInContact.Count-1; x >= 0; x--)
         {
@@ -30,6 +33,14 @@ public class MeleeEnemyScript : MonoBehaviour
         if (targetObject == null) return;
         Vector2 targetDirection = ((Vector2)targetObject.transform.position - ((Vector2)transform.position+GetComponent<Rigidbody2D>().velocity*0.25f)).normalized;
         GetComponent<Rigidbody2D>().AddForce(targetDirection * speed);
+        GetComponent<Rigidbody2D>().AddForceAtPosition(targetDirection * speed, forceSource.transform.position);
+        //pull grabbed objects towards the attacker
+        foreach (var obj in objectsInContact)
+        {
+            Rigidbody2D targetBody = obj.GetComponent<Rigidbody2D>();
+            if (targetBody)
+                targetBody.AddForceAtPosition(-targetDirection * speed, forceSource.transform.position);
+        }
     }
     //add objects to the list of objects that take damage
     private void OnCollisionEnter2D(Collision2D collision)

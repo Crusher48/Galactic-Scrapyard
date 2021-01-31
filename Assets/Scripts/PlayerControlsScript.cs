@@ -115,7 +115,7 @@ public class PlayerControlsScript : MonoBehaviour
         if (grabbedObject) //if we have a grabbed object, pull it towards the mouse cursor
         {
             Rigidbody2D grabbedBody = grabbedObject.GetComponent<Rigidbody2D>();
-            Vector2 launchDirection = mousePos - ((Vector2)grabbedBody.transform.position+grabbedBody.velocity*0.25f); //adds a small amount of velocity negation to this
+            Vector2 launchDirection = mousePos - ((Vector2)grabbedBody.transform.TransformPoint(dragPointOffset) + grabbedBody.velocity*0.25f); //adds a small amount of velocity negation to this
             launchDirection = launchDirection.normalized;//launchDirection /= Mathf.Max(launchDirection.magnitude, 1);
             //grabbedBody.AddForce(launchDirection * gravityForce,ForceMode2D.Force);
             grabbedBody.AddForceAtPosition(launchDirection * gravityForce, grabbedBody.transform.TransformPoint(dragPointOffset), ForceMode2D.Force);
