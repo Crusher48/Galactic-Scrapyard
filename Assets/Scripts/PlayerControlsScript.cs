@@ -19,6 +19,7 @@ public class PlayerControlsScript : MonoBehaviour
     GameObject activeJoint = null;
     Vector2 dragPointOffset = Vector2.zero;
     Vector2 hoveredHitPoint;
+    float cameraSize = 8;
     private void Awake()
     {
         AudioObject.audioObjectReference = audioObjectReference;
@@ -29,9 +30,16 @@ public class PlayerControlsScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             canvasHandler.OpenPauseMenu();
         if (Input.GetButton("Jump"))
+        {
             Camera.main.orthographicSize = 50;
+        }
         else
-            Camera.main.orthographicSize = 8;
+        {
+            print(Input.mouseScrollDelta);
+            cameraSize += -Input.mouseScrollDelta.y;
+            cameraSize = Mathf.Clamp(cameraSize, 5, 20);
+            Camera.main.orthographicSize = cameraSize;
+        }
         //get the mouse position
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         GameObject hoveredObject = null;
@@ -43,6 +51,10 @@ public class PlayerControlsScript : MonoBehaviour
             hoveredObject = hit.collider.gameObject;
             hoveredHitPoint = hit.point;
         }
+        if (hoveredObject)
+            canvasHandler.PrintObjectDetails(hoveredObject.GetComponent<Health>());
+        else
+            canvasHandler.HideObjectDetailsPanel();
         //select an object to grab
         if (Input.GetMouseButtonDown(0))
         {

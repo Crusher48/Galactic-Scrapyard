@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: soundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 0d113200e5fb1ed40b82b18f24fcc24f, type: 3}
+    - target: {fileID: 2625994453550975177, guid: e9667b9bb907d1a40aed9d7afc44a34a,
+        type: 3}
+      propertyPath: objectname
+      value: Asteroid
+      objectReference: {fileID: 0}
     - target: {fileID: 4255763461824643635, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: m_Sprite

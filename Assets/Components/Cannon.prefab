@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3089643945887992452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125920941984539388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4a233f570f5794ca0b7d55da17bd67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToDisable: {fileID: 7026452615965611121}
+  timeUntilDepower: 0
+--- !u!114 &8211267497691327373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125920941984539388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a70c32dd5dcc41489fb95ade07236ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 1700216364513055327}
+  projectilePrefab: {fileID: 151992032129571862, guid: f61fcc5a63389704eaac44b968851c64,
+    type: 3}
+  projectileVelocity: 1
+  projectileDamage: 20
+  cannonCooldown: 1
 --- !u!1 &4402404794624735001
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,38 +114,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3089643945887992452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125920941984539388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab4a233f570f5794ca0b7d55da17bd67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetToDisable: {fileID: 7026452615965611121}
-  timeUntilDepower: 0
---- !u!114 &8211267497691327373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125920941984539388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a70c32dd5dcc41489fb95ade07236ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensor: {fileID: 1700216364513055327}
-  projectilePrefab: {fileID: 151992032129571862, guid: f61fcc5a63389704eaac44b968851c64,
-    type: 3}
-  projectileVelocity: 1
-  projectileDamage: 20
-  cannonCooldown: 1
 --- !u!1001 &3000436007467346706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +126,16 @@ PrefabInstance:
       propertyPath: soundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 114bbf3a57358464cb909eab9886f528, type: 3}
+    - target: {fileID: 2625994453550975177, guid: e9667b9bb907d1a40aed9d7afc44a34a,
+        type: 3}
+      propertyPath: objectname
+      value: Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2625994453550975177, guid: e9667b9bb907d1a40aed9d7afc44a34a,
+        type: 3}
+      propertyPath: description
+      value: Fires projectiles at enemies.
+      objectReference: {fileID: 0}
     - target: {fileID: 4255763461824643635, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: m_Sprite
@@ -242,7 +252,12 @@ PrefabInstance:
     - target: {fileID: 814613390739015832, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.16470589
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 814613390739015832, guid: c9818b989070e624fb5918d31d3b3f85,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
