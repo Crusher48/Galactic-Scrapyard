@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     [SerializeField] AudioClip projectileAudio;
-    float projectileLifetime = 5;
+    [SerializeField] float projectileLifetime = 5;
     float projectileDamage = 10;
     //initialize the projectile with the given damage and velocity
     public void InitializeProjectile(float damage,Vector2 launchVelocity)

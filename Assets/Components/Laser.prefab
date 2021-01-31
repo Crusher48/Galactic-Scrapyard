@@ -27,11 +27,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensor: {fileID: 1700216364513055327}
-  projectilePrefab: {fileID: 151992032129571862, guid: f61fcc5a63389704eaac44b968851c64,
+  projectilePrefab: {fileID: 151992032129571862, guid: 3289fbb969435cc43b928c6a1d7f9351,
     type: 3}
-  projectileVelocity: 1
-  projectileDamage: 20
-  cannonCooldown: 1
+  projectileVelocity: 0.001
+  projectileDamage: 4
+  cannonCooldown: 0.1
   turret: {fileID: 4402404794624735001}
 --- !u!1 &4402404794624735001
 GameObject:
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 4402404794624735001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1593796345008814810}
   m_RootOrder: 1
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 08f0ad72142b8cc4e8e34b72f7765aeb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed7088c72bf67fd4295638a2ce8564cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,18 +130,18 @@ PrefabInstance:
     - target: {fileID: 2625994453550975177, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: objectname
-      value: Cannon
+      value: Laser Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 2625994453550975177, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: description
-      value: Fires projectiles at enemies.
+      value: Close range rapid-fire defense turret.
       objectReference: {fileID: 0}
     - target: {fileID: 4255763461824643635, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6f2fd8fb255f9574abcc09e1975f3afe,
+      objectReference: {fileID: 21300000, guid: 63d27293e09e32e428d134a2639d6592,
         type: 3}
     - target: {fileID: 4255763461824643635, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 7962748243905382894, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: m_Name
-      value: Cannon
+      value: Laser
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9667b9bb907d1a40aed9d7afc44a34a, type: 3}
@@ -260,6 +260,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2263810996245171563, guid: c9818b989070e624fb5918d31d3b3f85,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_RootOrder
@@ -268,12 +273,12 @@ PrefabInstance:
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2627546036819529289, guid: c9818b989070e624fb5918d31d3b3f85,
         type: 3}

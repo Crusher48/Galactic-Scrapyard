@@ -904,6 +904,9 @@ MonoBehaviour:
   - spawnedObject: {fileID: 6130351776705976389, guid: d5d4fc4ab81337f4fa7e2587e6221216,
       type: 3}
     weight: 1
+  - spawnedObject: {fileID: 5125920941984539388, guid: ee3496456195c67448b5e73b553fbde1,
+      type: 3}
+    weight: 1
 --- !u!1001 &1294908632
 PrefabInstance:
   m_ObjectHideFlags: 0

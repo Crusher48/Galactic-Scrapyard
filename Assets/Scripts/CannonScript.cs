@@ -9,13 +9,18 @@ public class CannonScript : MonoBehaviour
     [SerializeField] float projectileVelocity = 1;
     [SerializeField] float projectileDamage = 10;
     [SerializeField] float cannonCooldown = 1;
+    [SerializeField] GameObject turret;
     float cannonTimer = 0;
     // Update is called once per frame
     void Update()
     {
+        GameObject target = sensor.GetClosestObjectInRange();
+        if (target)
+        {
+            LookCannonAt(target.transform.position);
+        }
         if (cannonTimer <= 0) //attempt to fire the cannon
         {
-            GameObject target = sensor.GetClosestObjectInRange();
             if (target)
             {
                 GameObject spawnedProjectile = Instantiate(projectilePrefab);
@@ -30,5 +35,13 @@ public class CannonScript : MonoBehaviour
         {
             cannonTimer -= Time.deltaTime;
         }
+    }
+    //sets the rotation of the node
+    public void LookCannonAt(Vector2 target)
+    {
+        Vector2 direction = target - (Vector2)transform.position;
+        Vector3 eulers = turret.transform.eulerAngles;
+        eulers.z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg+90;
+        turret.transform.eulerAngles = eulers;
     }
 }
