@@ -160,17 +160,17 @@ MonoBehaviour:
   minSpawnCount: 1
   maxSpawnCount: 5
   startingSpawns: 0
-  spawnCooldown: 15
+  spawnCooldown: 20
   spawnables:
   - spawnedObject: {fileID: 2637417465407765697, guid: f3521b4c811e50548881f9a4fcd471fb,
       type: 3}
-    weight: 20
+    weight: 25
   - spawnedObject: {fileID: 2637417465407765697, guid: 441f1e48b6df4194ca8c23ccfcddbd11,
       type: 3}
-    weight: 5
+    weight: 10
   - spawnedObject: {fileID: 8943356419489625386, guid: 169069bd06254484cb43f2f7a65b7e8d,
       type: 3}
-    weight: 1
+    weight: 2
 --- !u!4 &61306677
 Transform:
   m_ObjectHideFlags: 0
@@ -1318,7 +1318,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 927700cab826c1b45b688392d68c9523, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
