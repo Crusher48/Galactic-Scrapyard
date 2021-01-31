@@ -33,6 +33,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 851507041703724575, guid: e9667b9bb907d1a40aed9d7afc44a34a,
+        type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 114bbf3a57358464cb909eab9886f528, type: 3}
     - target: {fileID: 4255763461824643635, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: m_Sprite

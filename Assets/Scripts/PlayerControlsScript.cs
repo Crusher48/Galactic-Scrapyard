@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class PlayerControlsScript : MonoBehaviour
 {
+    [SerializeField] GameObject audioObjectReference;
     [SerializeField] UIHandler canvasHandler;
     [SerializeField] LineRenderer gravityForceRenderer;
     [SerializeField] GameObject jointPrefab;
     [SerializeField] float baseGravityForce = 5;
     [SerializeField] float gravityForceBonus = 5;
     [SerializeField] float maxJointLength = 5;
+    [SerializeField] AudioClip tetherSoundEffect;
+    [SerializeField] AudioSource thrustAudioSource;
 
     Vector2 mousePos;
     GameObject grabbedObject = null;
     GameObject activeJoint = null;
     Vector2 dragPointOffset = Vector2.zero;
     Vector2 hoveredHitPoint;
+    private void Awake()
+    {
+        AudioObject.audioObjectReference = audioObjectReference;
+    }
     //Called once per frame
     void Update()
     {
@@ -41,11 +48,13 @@ public class PlayerControlsScript : MonoBehaviour
         {
             grabbedObject = hoveredObject;
             dragPointOffset = grabbedObject.transform.InverseTransformPoint(hoveredHitPoint);
+            thrustAudioSource.Play();
         }
         //unselect a grabbed object
         if (Input.GetMouseButtonUp(0))
         {
             grabbedObject = null;
+            thrustAudioSource.Stop();
         }
         //attach one end of a joint to the hovered object
         if (Input.GetMouseButtonDown(1))
@@ -75,6 +84,7 @@ public class PlayerControlsScript : MonoBehaviour
                     //create a new joint to attach to
                     GameObject secondJoint = CreateJoint(hoveredObject, hoveredHitPoint);
                     activeJoint.GetComponent<JointHandlerScript>().AttachJoint(secondJoint.GetComponent<JointHandlerScript>(),maxJointLength);
+                    AudioObject.CreateAudioObject(tetherSoundEffect, activeJoint.transform.position);
                 }
                 else
                 {

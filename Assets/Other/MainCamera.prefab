@@ -257,6 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b566d7b383cd449be2e86e64ec30f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioObjectReference: {fileID: 2762279237421953426, guid: 6445f3ae74f4d2e418ba2e858ea64b4b,
+    type: 3}
   canvasHandler: {fileID: 3913808925524258963}
   gravityForceRenderer: {fileID: 1849495147659095080}
   jointPrefab: {fileID: 502256928601219891, guid: e288c13d87bb7fd47801db0cd28633ef,

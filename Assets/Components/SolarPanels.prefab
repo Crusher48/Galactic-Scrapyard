@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3089643945887992452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125920941984539388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab4a233f570f5794ca0b7d55da17bd67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetToDisable: {fileID: 0}
---- !u!114 &8211267497691327373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125920941984539388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a70c32dd5dcc41489fb95ade07236ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensor: {fileID: 0}
-  projectilePrefab: {fileID: 151992032129571862, guid: f61fcc5a63389704eaac44b968851c64,
-    type: 3}
-  projectileVelocity: 1
-  projectileDamage: 10
-  cannonCooldown: 1
 --- !u!61 &420263570847969527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57,6 +26,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &3089643945887992452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125920941984539388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4a233f570f5794ca0b7d55da17bd67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToDisable: {fileID: 0}
+  timeUntilDepower: 0
+--- !u!114 &8211267497691327373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125920941984539388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a70c32dd5dcc41489fb95ade07236ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 0}
+  projectilePrefab: {fileID: 151992032129571862, guid: f61fcc5a63389704eaac44b968851c64,
+    type: 3}
+  projectileVelocity: 1
+  projectileDamage: 10
+  cannonCooldown: 1
 --- !u!1001 &1887043593084667567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +144,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 851507041703724575, guid: e9667b9bb907d1a40aed9d7afc44a34a,
+        type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 114bbf3a57358464cb909eab9886f528, type: 3}
     - target: {fileID: 4255763461824643635, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: m_Sprite

@@ -19,6 +19,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 851507041703724575, guid: e9667b9bb907d1a40aed9d7afc44a34a,
+        type: 3}
+      propertyPath: soundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: b2f2e77224b30d244939d6268dd7e1ab, type: 3}
     - target: {fileID: 2625994453550975177, guid: e9667b9bb907d1a40aed9d7afc44a34a,
         type: 3}
       propertyPath: health
