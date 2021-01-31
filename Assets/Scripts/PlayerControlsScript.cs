@@ -6,7 +6,8 @@ public class PlayerControlsScript : MonoBehaviour
 {
     [SerializeField] LineRenderer gravityForceRenderer;
     [SerializeField] GameObject jointPrefab;
-    [SerializeField] float gravityForce = 5;
+    [SerializeField] float baseGravityForce = 5;
+    [SerializeField] float gravityForceBonus = 5;
     [SerializeField] float maxJointLength = 5;
 
     Vector2 mousePos;
@@ -117,8 +118,10 @@ public class PlayerControlsScript : MonoBehaviour
             Rigidbody2D grabbedBody = grabbedObject.GetComponent<Rigidbody2D>();
             Vector2 launchDirection = mousePos - ((Vector2)grabbedBody.transform.TransformPoint(dragPointOffset) + grabbedBody.velocity*0.25f); //adds a small amount of velocity negation to this
             launchDirection = launchDirection.normalized;//launchDirection /= Mathf.Max(launchDirection.magnitude, 1);
-            //grabbedBody.AddForce(launchDirection * gravityForce,ForceMode2D.Force);
-            grabbedBody.AddForceAtPosition(launchDirection * gravityForce, grabbedBody.transform.TransformPoint(dragPointOffset), ForceMode2D.Force);
+            //amplify from gravity zones
+            int layers = LayerMask.GetMask("ForceZone");
+            var hits = Physics2D.RaycastAll(grabbedBody.transform.TransformPoint(dragPointOffset), Vector2.zero, 0, layers);
+            grabbedBody.AddForceAtPosition(launchDirection * (baseGravityForce+gravityForceBonus*hits.Length), grabbedBody.transform.TransformPoint(dragPointOffset), ForceMode2D.Force);
         }
     }
     //Creates a joint
