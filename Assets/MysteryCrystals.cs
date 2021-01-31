@@ -7,6 +7,7 @@ public class MysteryCrystals : MonoBehaviour
     [SerializeField] int crystalsNeeded = 5;
     [SerializeField] float repulsionForce = 1;
     [SerializeField] RangeDetectorScript sensor;
+    bool victoryTriggered = false;
     // Update is called once per frame
     void Update()
     {
@@ -23,9 +24,10 @@ public class MysteryCrystals : MonoBehaviour
                 otherObject.GetComponent<Rigidbody2D>().AddForce((transform.position - otherObject.transform.position).normalized * repulsionForce);
             }
         }
-        if (crystalsFound >= crystalsNeeded)
+        if (crystalsFound >= crystalsNeeded && victoryTriggered == false)
         {
-            print("Victory!");
+            GameObject.Find("MainCamera").GetComponent<PlayerControlsScript>().EndGame("Victory!");
+            victoryTriggered = true;
         }
     }
 }

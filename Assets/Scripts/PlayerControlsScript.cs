@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControlsScript : MonoBehaviour
 {
+    [SerializeField] UIHandler canvasHandler;
     [SerializeField] LineRenderer gravityForceRenderer;
     [SerializeField] GameObject jointPrefab;
     [SerializeField] float baseGravityForce = 5;
@@ -18,6 +19,8 @@ public class PlayerControlsScript : MonoBehaviour
     //Called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            canvasHandler.OpenPauseMenu();
         if (Input.GetButton("Jump"))
             Camera.main.orthographicSize = 50;
         else
@@ -125,5 +128,9 @@ public class PlayerControlsScript : MonoBehaviour
         newJoint.transform.parent = target.transform;
         newJoint.GetComponent<JointHandlerScript>().AttachToParent();
         return newJoint;
+    }
+    public void EndGame(string endText)
+    {
+        canvasHandler.OpenPauseMenu(endText);
     }
 }
