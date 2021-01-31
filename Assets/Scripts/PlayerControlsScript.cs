@@ -43,6 +43,10 @@ public class PlayerControlsScript : MonoBehaviour
             hoveredObject = hit.collider.gameObject;
             hoveredHitPoint = hit.point;
         }
+        if (hoveredObject)
+            canvasHandler.PrintObjectDetails(hoveredObject.GetComponent<Health>());
+        else
+            canvasHandler.HideObjectDetailsPanel();
         //select an object to grab
         if (Input.GetMouseButtonDown(0))
         {

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public string objectname;
+    public string description;
     public float health = 100;
     public float maxHealth = 100;
     Color baseColor;
