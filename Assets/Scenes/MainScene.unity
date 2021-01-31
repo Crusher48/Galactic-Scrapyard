@@ -164,7 +164,7 @@ MonoBehaviour:
   spawnables:
   - spawnedObject: {fileID: 2637417465407765697, guid: f3521b4c811e50548881f9a4fcd471fb,
       type: 3}
-    weight: 25
+    weight: 20
   - spawnedObject: {fileID: 2637417465407765697, guid: 441f1e48b6df4194ca8c23ccfcddbd11,
       type: 3}
     weight: 5
@@ -431,7 +431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &520018097 stripped
 GameObject:
@@ -1134,7 +1134,7 @@ PrefabInstance:
     - target: {fileID: 4931406773328385359, guid: e2e813bd93927dd46ba419b9e221f2a1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4931406773328385359, guid: e2e813bd93927dd46ba419b9e221f2a1,
         type: 3}
