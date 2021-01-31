@@ -101,7 +101,9 @@ MonoBehaviour:
   gravityForceRenderer: {fileID: 1849495147659095080}
   jointPrefab: {fileID: 502256928601219891, guid: e288c13d87bb7fd47801db0cd28633ef,
     type: 3}
-  gravityForce: 5
+  baseGravityForce: 10
+  gravityForceBonus: 5
+  maxJointLength: 5
 --- !u!114 &4635411249458335044
 MonoBehaviour:
   m_ObjectHideFlags: 0
